@@ -1,0 +1,17 @@
+To talk in simple terms, it is more of a checkpoint for every http action. Every api call that has been made, is passed through this interceptor.
+
+So, why two interceptors?
+
+An api call is made up of two halves, a request and a response. Since, it behaves like a checkpoint, the request and the response have separate interceptors.
+
+Some request interceptor use cases -
+
+Assume you want to check before making a request, are your credentials valid? So, instead of actually making an api call, you can check it at the interceptor level that are your credentials valid.
+
+Assume you need to attach a token to every request made, instead of duplicating the token addition logic at every axios call, you can make an interceptor which attaches a token on every request that is made.
+
+Some response interceptor use cases -
+
+Assume you got a response, and judging by the api responses you want to deduce that the user is logged in. So, in the response interceptor you can initialize a class that handles the user logged in state and update it accordingly on the response object you received.
+
+Assume you have requested some api with valid api credentials, but you do not have the valid role to access the data. So, you can tigger an alert from the response interceptor saying that the user is not allowed. This way you'll be saved from the unauthorized api error handling that you would have to perform on every axios request that you made.
